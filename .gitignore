@@ -27,3 +27,6 @@ coverage
 *.sln
 *.sw?
 .history
+
+test.ts
+test.vue
