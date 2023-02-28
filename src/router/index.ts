@@ -2,6 +2,8 @@ import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/config'
 import { pinia } from '@/stores'
 import { useGlobalStore } from '@/stores/global'
 import { useRoutesStore } from '@/stores/routes'
+import { useTokenStore } from '@/stores/token'
+import { timestamp } from '@/utils/date'
 import { storeToRefs } from 'pinia'
 import { createRouter, createWebHistory } from 'vue-router'
 import { frontEndRoutes } from './frontEnd'
@@ -21,6 +23,7 @@ const router = createRouter({
 const globalStore = useGlobalStore(pinia)
 const { isBackEndRoutes } = storeToRefs(globalStore)
 
+
 /**
  * 无需鉴权的路由名称
  */
@@ -31,8 +34,11 @@ const homePath = HOME_URL
  * 导航守卫
  */
 router.beforeEach(async (to, from, next) => {
-  const token = localStorage.getItem('token')
+  // token
+  const tokenStore = useTokenStore(pinia)
+  const token = tokenStore.getValidToken()
   console.log(token);
+  
   if (token) {
     if (to.path === loginRoute) {
       next(homePath)
@@ -47,11 +53,10 @@ router.beforeEach(async (to, from, next) => {
         } else {
           //前端路由
           await frontEndRoutes()
-          console.log(to.path);
-          console.log(to.query);
           next({ path: to.path, query: to.query });
         }
       } else {
+        // 路由已存在
         next()
       }
     }
