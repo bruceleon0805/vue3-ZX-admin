@@ -1,9 +1,13 @@
 <template>
   <div class="layout-container">
     <el-container>
+
       <LayoutAside />
-      <el-container>
-        <el-header style="background-color: blue;">Header</el-header>
+
+      <el-container direction="vertical">
+        <!-- 头部 -->
+        <LayoutHeader />
+        
         <el-main style="background-color: white;">Main
           <el-input placeholder="搜索文本框">
             <template #prefix>
@@ -11,10 +15,11 @@
                 <component :is="iconPlus"></component>
               </el-icon>
             </template>
-        </el-input>
-        
+          </el-input>
         </el-main>
-        <el-footer style="background-color: purple;">Footer</el-footer>
+
+        <LayoutFooter />
+
       </el-container>
     </el-container>
   </div>
@@ -26,6 +31,8 @@ const iconPlus = 'plus'
 
 
 const LayoutAside = defineAsyncComponent(() => import('@/layouts/component/aside.vue'))
+const LayoutHeader = defineAsyncComponent(() => import('@/layouts/component/header.vue'))
+const LayoutFooter = defineAsyncComponent(() => import('@/layouts/component/footer.vue'))
 
 </script>
 

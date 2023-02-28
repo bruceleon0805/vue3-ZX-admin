@@ -1,27 +1,123 @@
 
-//静态路由
-export const staticRoutes = [
+import type { RouteRecordRaw } from 'vue-router'
+
+/**
+ * 静态路由
+ */
+
+export const staticRoutes: RouteRecordRaw[] = [
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/login/login.vue')
+
+    }
+]
+
+/**
+ * 提示错误路由
+ */
+export const errorRoutes: RouteRecordRaw[] = [
+    {
+        path: '/:path(.*)*',
+        name: 'notFound',
+        component: () => import('@/views/error/404.vue')
+    },
+    {
+        path: '/401',
+        name: 'noAuth',
+        component: () => import('@/views/error/401.vue')
+    },
 
 ]
 
 
-//动态路由
-export const dynamicRoutes = [
-
-]
-
-export const routes = [
+/**
+ * 动态路由
+ */
+export const dynamicRoutes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
-        component: () => import('@/layouts/basic.vue')
-    },
-    {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (About.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import('../views/AboutView.vue')
+        component: () => import('@/layouts/basic.vue'),
+        redirect: '/home',
+        children: [
+            {
+
+                path: '/dashboard',
+                name: 'dashboard',
+                meta: {
+                    title: 'Dashboard',
+                    icon: 'dashboard',
+                    roles: ['admin', 'common']
+                },
+                component: () => import('@/views/dashboard/dashboard.vue')
+            },
+            {
+
+                path: '/system',
+                name: 'system',
+                meta: {
+                    title: 'System',
+                    icon: 'dashboard',
+                    roles: ['admin', 'common']
+                },
+                redirect: '/system/menu',
+                children: [
+                    {
+                        path: '/system/menu',
+                        name: 'systemMenu',
+                        meta: {
+                            title: 'System',
+                            icon: 'setting',
+                            roles: ['admin', 'common']
+                        },
+                        component: () => import('@/views/system/menu/menu.vue'),
+                    }
+                ]
+            },
+            {
+                path: '/menu',
+                name: 'menu',
+                redirect: '/menu/menu1',
+                meta: {
+                    title: 'menu',
+                    permissions: ['admin', 'common']
+                },
+                children: [
+                    {
+                        path: '/menu/menu1',
+                        name: 'menu1',
+                        meta: {
+                            title: 'menu1',
+                            roles: ['admin', 'common']
+                        },
+                        component: () => import('@/views/menu/menu1/menu1.vue')
+                    },
+                    {
+                        path: '/menu/menu2',
+                        name: 'menu2',
+                        meta: {
+                            title: 'menu2',
+                            roles: ['admin', 'common']
+                        },
+                        redirect: '/menu/menu2/menu22',
+                        children: [
+                            {
+                                path: '/menu/menu2/menu22',
+                                name: 'menu22',
+                                meta: {
+                                    title: 'menu22',
+                                    roles: ['admin', 'common']
+                                },
+                                component: () => import('@/views/menu/menu2/menu22/menu22.vue')
+                            }
+                        ]
+                    },
+
+                ]
+            }
+        ]
     }
+
 ]

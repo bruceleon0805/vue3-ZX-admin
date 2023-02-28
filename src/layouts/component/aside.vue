@@ -1,8 +1,7 @@
 
 <template>
-    <el-aside class="layout-aside">
-        <el-menu default-active="2" class="el-menu-vertical" :collapse="isCollapse" @open="handleOpen"
-            @close="handleClose">
+    <el-aside :width="asideWidth">
+        <el-menu default-active="2" :collapse="isCollapse" @open="handleOpen" @close="handleClose" :collapse-transition="false">
             <el-sub-menu index="1">
                 <template #title>
                     <el-icon>
@@ -46,10 +45,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useThemeStore } from '@/stores/theme';
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 
+const themeStore = useThemeStore()
+const { isCollapse } = storeToRefs(themeStore)
 
-const isCollapse = ref(true)
+const asideWidth = computed(() => isCollapse.value ? '64px' : '220px')
 
 const handleOpen = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
@@ -63,15 +66,4 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 </script>
 
-<style lang="scss" scoped>
-.layout-aside {
-    height: 100%;
-    width: 200px;
-    background-color: red;
-}
-
-.el-menu-vertical:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-}
-</style>
+<style lang="scss" scoped></style>
