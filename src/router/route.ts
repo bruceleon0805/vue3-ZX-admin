@@ -48,7 +48,19 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'dashboard',
                 meta: {
                     title: 'Dashboard',
-                    icon: 'dashboard',
+                    icon: 'Odometer',
+                    roles: ['admin', 'common']
+                },
+                component: () => import('@/views/dashboard/dashboard.vue')
+            },
+            {
+
+                path: '/hidden',
+                name: 'hidden',
+                meta: {
+                    hidden: true,
+                    title: 'hidden',
+                    icon: 'Odometer',
                     roles: ['admin', 'common']
                 },
                 component: () => import('@/views/dashboard/dashboard.vue')
@@ -59,7 +71,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'system',
                 meta: {
                     title: 'System',
-                    icon: 'dashboard',
+                    icon: 'setting',
                     roles: ['admin', 'common']
                 },
                 redirect: '/system/menu',
@@ -82,6 +94,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 redirect: '/menu/menu1',
                 meta: {
                     title: 'menu',
+                    icon:'Menu',
                     permissions: ['admin', 'common']
                 },
                 children: [
@@ -89,6 +102,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         path: '/menu/menu1',
                         name: 'menu1',
                         meta: {
+                            icon:'menu',
                             title: 'menu1',
                             roles: ['admin', 'common']
                         },
@@ -99,6 +113,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         name: 'menu2',
                         meta: {
                             title: 'menu2',
+                            icon:'menu',
                             roles: ['admin', 'common']
                         },
                         redirect: '/menu/menu2/menu22',
@@ -107,6 +122,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                                 path: '/menu/menu2/menu22',
                                 name: 'menu22',
                                 meta: {
+                                    icon:'menu',
+                                    hidden: true,
                                     title: 'menu22',
                                     roles: ['admin', 'common']
                                 },

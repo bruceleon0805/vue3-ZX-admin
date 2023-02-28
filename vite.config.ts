@@ -20,6 +20,13 @@ const pathSrc = fileURLToPath(new URL('./src', import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/theme/element-plus.scss" as *;`,
+      },
+    },
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -35,8 +42,10 @@ export default defineConfig({
     }),
     Components({
       resolvers: [
-        ElementPlusResolver(),
-         // Auto register icon components
+        ElementPlusResolver({
+          importStyle: "sass"
+        }),
+        // Auto register icon components
         // 自动注册图标组件
         IconsResolver({
           enabledCollections: ['ep'],

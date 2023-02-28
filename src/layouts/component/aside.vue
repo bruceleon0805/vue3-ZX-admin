@@ -1,69 +1,75 @@
 
 <template>
     <el-aside :width="asideWidth">
-        <el-menu default-active="2" :collapse="isCollapse" @open="handleOpen" @close="handleClose" :collapse-transition="false">
-            <el-sub-menu index="1">
-                <template #title>
-                    <el-icon>
-                        <location />
-                    </el-icon>
-                    <span>Navigator One</span>
-                </template>
-                <el-menu-item-group>
-                    <template #title><span>Group One</span></template>
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item two</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                    <template #title><span>item four</span></template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
+        <el-menu active-text-color="#1890ff" :router="true" background-color="white" default-active="2"
+            :collapse="isCollapse" :collapse-transition="false">
+            <template v-for="item in menuRoutes">
+                <el-sub-menu :key="item.path" :index="item.path" v-if="item.children && item.children.length">
+                    <template #title>
+                        <el-icon>
+                            <component :is='item.meta?.icon'></component>
+                        </el-icon>
+                        <span>{{ item.meta?.title }}</span>
+                    </template>
+                    <!-- 子菜单 -->
+                    <SubMenu :sub-menus="item.children" />
                 </el-sub-menu>
-            </el-sub-menu>
-            <el-menu-item index="2">
-                <el-icon>
-                    <i-ep-menu />
-                </el-icon>
-                <template #title>Navigator Two</template>
-            </el-menu-item>
-            <el-menu-item index="3" disabled>
-                <el-icon>
-                    <document />
-                </el-icon>
-                <template #title>Navigator Three</template>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <el-icon>
-                    <setting />
-                </el-icon>
-                <template #title>Navigator Four</template>
-            </el-menu-item>
+                <template v-else>
+                    <el-menu-item :index="item.path" :key="item.path">
+                        <template #title>
+                            <el-icon>
+                                <component :is='item.meta?.icon'></component>
+                            </el-icon>
+                            <span>{{ item.meta?.title }}</span>
+                        </template>
+                    </el-menu-item>
+                </template>
+            </template>
         </el-menu>
     </el-aside>
 </template>
 
 <script setup lang="ts">
+import { useMenuRoutesStore } from '@/stores/menuRoutes';
 import { useThemeStore } from '@/stores/theme';
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 
 const themeStore = useThemeStore()
 const { isCollapse } = storeToRefs(themeStore)
-
 const asideWidth = computed(() => isCollapse.value ? '64px' : '220px')
 
-const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
+/**
+ * 获取菜单
+ */
+const menuRoutesStore = useMenuRoutesStore()
+const { menuRoutes } = storeToRefs(menuRoutesStore)
 
-
-const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
-
-
+//子菜单
+const SubMenu = defineAsyncComponent(() => import('@/layouts/component/subMenu.vue'))
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+/**
+ el-sub-menu 下提示 父 子级联动
+ */
+.el-sub-menu:hover {
+    .el-sub-menu__title {
+        color: red !important
+    }
+}
+
+/**
+当前项颜色变化 
+ */
+// .el-sub-menu__title:hover {
+//     color: red !important
+// }
+
+
+
+.el-menu-item:hover {
+    background-color: #fff;
+    color: red !important;
+}
+</style>

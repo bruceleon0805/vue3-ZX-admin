@@ -9,6 +9,8 @@
         <LayoutHeader />
         
         <el-main style="background-color: white;">Main
+
+          <el-button type="primary">button</el-button>
           <el-input placeholder="搜索文本框">
             <template #prefix>
               <el-icon>

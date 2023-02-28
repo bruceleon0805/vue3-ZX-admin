@@ -1,5 +1,5 @@
 import { pinia } from "@/stores"
-import { useRoutesStore } from "@/stores/routes"
+import { useMenuRoutesStore } from "@/stores/menuRoutes"
 import { useTagsRoutesStore } from "@/stores/tagsRoutes"
 import { useTokenStore } from "@/stores/token"
 import { useUserInfoStore } from "@/stores/userInfo"
@@ -30,9 +30,10 @@ export const frontEndRoutes = async () => {
     // 动态添加路由
     await addDynamicRoutes()
 
-    // 缓存 有权限 menu 
+    // 缓存 有权限且没有开启隐藏的 menu 
     cacheMenu()
-    // 缓存 有权限 tags Routes
+
+    // 缓存 有权限且没有开启隐藏的 tags Routes
     cacheTags()
 
 
@@ -187,13 +188,32 @@ const hasRolesMenu = (routes: any, roles: any) => {
  */
 export function cacheMenu() {
     const userInfoStore = useUserInfoStore(pinia);
-    const routesStore = useRoutesStore(pinia);
+    const mnueRoutesStore = useMenuRoutesStore(pinia);
     const { userInfo } = storeToRefs(userInfoStore);
 
     const menuRoutes = hasRolesMenu(dynamicRoutes[0].children, userInfo.value.roles)
 
-    routesStore.setRoutes(menuRoutes);
+    // 过滤 路由隐藏的项 meta.hidden=true
+    const filterHidden = filterHiddenMenu(menuRoutes)
+
+    mnueRoutesStore.setRoutes(filterHidden);
 }
+/**
+ * 过滤隐藏的 路由
+ * @param menuRoutes 
+ * @returns 没有隐藏的路由
+ */
+const filterHiddenMenu = (menuRoutes: RouteRecordRaw[]) => {
+    return menuRoutes.filter((item) => !item.meta?.hidden).map((it) => {
+        it = Object.assign({}, it)
+        if (it.children) {
+            it.children = filterHiddenMenu(it.children)
+        }
+        return it
+    })
+}
+
+
 
 /**
  * 缓存多级嵌套数组处理后的一维数组
@@ -207,9 +227,12 @@ const cacheTags = () => {
 
     const rolesRoutes = hasRolesMenu(dynamicRoutes, userInfo.value.roles);
     const twoStageRoutes = formatTwoStageRoutes(formatFlatteningRoutes(rolesRoutes))
-    
-    // 添加到 pinia setTagsRoutes 中
-    tagsRoutesStore.setTagsRoutes(twoStageRoutes[0].children);
+
+    //过滤隐藏的菜单
+    const filterHidden = filterHiddenMenu(twoStageRoutes[0].children)
+
+    // 保存到 pinia setTagsRoutes 中
+    tagsRoutesStore.setTagsRoutes(filterHidden);
 }
 
 
