@@ -57,7 +57,7 @@ const { menuRoutes } = storeToRefs(menuRoutesStore)
 
 //子菜单
 const SubMenu = defineAsyncComponent(() => import('@/layouts/component/subMenu.vue'))
-const Logo = defineAsyncComponent(() => import('@/layouts/logo/index.vue'))
+const Logo = defineAsyncComponent(() => import('@/layouts/logo/logo.vue'))
 </script>
 
 <style lang="scss">

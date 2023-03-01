@@ -36,7 +36,7 @@ const { name, prefix, size, color } = toRefs(props)
 const iconTag = computed(() => name.value.includes(prefix.value) ? name.value : prefix.value + name.value)
 
 // px
-const sizeUnit = size.value + 'px'
+const sizeUnit = computed(() => size.value + 'px')
 
 </script>
 
