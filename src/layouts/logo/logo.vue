@@ -1,8 +1,8 @@
 <template>
     <el-menu text-color="#1890ff">
         <el-menu-item>
-            <iconfont name="sofa" :size="30" style="margin-right: 10px;"/>
-            <template #title>
+            <iconfont name="sofa" :size="28" style="margin-right: 10px;" />
+            <template #title v-if="!isCollapse">
                 <h1>Vue3-ZX-Admin</h1>
             </template>
         </el-menu-item>
@@ -10,10 +10,15 @@
 </template>
 
 <script setup lang="ts">
+import { useThemeStore } from '@/stores/theme';
+import { storeToRefs } from 'pinia';
+
+const themeStore = useThemeStore()
+const { isCollapse } = storeToRefs(themeStore)
+
+
+
 
 </script>
 
-<style lang="scss" scoped>
-
-
-</style>
+<style lang="scss" scoped></style>

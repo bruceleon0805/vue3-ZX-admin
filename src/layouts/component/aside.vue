@@ -7,7 +7,7 @@
                 <el-sub-menu :key="item.path" :index="item.path" v-if="item.children && item.children.length">
                     <template #title>
                         <el-icon>
-                            <component :is='getIcon(item.meta?.icon)'></component>
+                            <component :is='getOneEpIcon(item.meta?.icon)'></component>
                         </el-icon>
                         <span>{{ item.meta?.title }}</span>
                     </template>
@@ -17,7 +17,7 @@
                 <template v-else>
                     <el-menu-item :index="item.path" :key="item.path">
                         <el-icon>
-                            <component :is='getIcon(item.meta?.icon)'></component>
+                            <component :is='getOneEpIcon(item.meta?.icon)'></component>
                         </el-icon>
                         <template #title>
                             <span>{{ item.meta?.title }}</span>
@@ -33,16 +33,9 @@
 import { useMenuRoutesStore } from '@/stores/menuRoutes';
 import { useThemeStore } from '@/stores/theme';
 import { storeToRefs } from 'pinia';
-import { capitalize, computed, defineAsyncComponent } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 
-// 动态组件 icon
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
-const getIcon = (name: string | unknown) => {
-    if (!name) return;
-    // @ts-ignore
-    return ElementPlusIconsVue[capitalize(name)]
-}
+import { getOneEpIcon } from '@/utils/icon';
 
 
 const themeStore = useThemeStore()

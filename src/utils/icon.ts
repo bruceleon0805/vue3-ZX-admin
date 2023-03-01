@@ -6,7 +6,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 const iconfont = defineAsyncComponent(() => import('@/components/iconfont/iconfont.vue'))
 //const iconfontSymbol = defineAsyncComponent(() => import('@/components/iconfont/iconfontSymbol.vue'))
 
-import { defineAsyncComponent, type App } from "vue";
+import { capitalize, defineAsyncComponent, type App } from "vue";
 
 export const useIcon = {
     ePlus: (app: App) => {
@@ -34,4 +34,14 @@ const registerIcon = (app: App, allowList: string[] = []) => {
             app.component(key, component)
         }
     }
+}
+
+/**
+     * 从 ElementPlusIconsVue 获取一个element-plus icon
+     * 待 优化
+     */
+export const getOneEpIcon = (iconName: string | unknown) => {
+    if (!iconName) return;
+    // @ts-ignore
+    return ElementPlusIconsVue[capitalize(iconName)]
 }
