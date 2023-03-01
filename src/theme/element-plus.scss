@@ -1,14 +1,11 @@
 
 // 修改element-plus 主题样式
 
-
-@forward 'element-plus/theme-chalk/src/common/var.scss' with (
-//   $colors: (
-//     'primary': (
-//       'base': red,
-//     ),
-//   ),
-  $menu: (
-    'hover-bg-color':white
-  )
-);
+@forward 'element-plus/theme-chalk/src/common/var.scss' with ( //   $colors: (
+  //     'primary': (
+  //       'base': red,
+  //     ),
+  //   ),
+  $menu: ('hover-bg-color':var(--el-color-white),
+    'hover-text-color':var(--el-color-primary), //没啥用
+  ));

@@ -123,8 +123,17 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                                 name: 'menu22',
                                 meta: {
                                     icon:'menu',
-                                    hidden: true,
                                     title: 'menu22',
+                                    roles: ['admin', 'common']
+                                },
+                                component: () => import('@/views/menu/menu2/menu22/menu22.vue')
+                            },
+                            {
+                                path: '/menu/menu2/menu23',
+                                name: 'menu23',
+                                meta: {
+                                    icon:'menu',
+                                    title: 'menu23',
                                     roles: ['admin', 'common']
                                 },
                                 component: () => import('@/views/menu/menu2/menu22/menu22.vue')
