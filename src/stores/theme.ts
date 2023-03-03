@@ -10,6 +10,8 @@ export const useThemeStore = defineStore('themeStore', {
         return {
             // 是否折叠菜单
             isCollapse: false,
+            // 路由切换动画 可选 slide-right|slide-left|opacity|move|fade
+            transitionName: 'slide-right'
         }
     },
     actions: {

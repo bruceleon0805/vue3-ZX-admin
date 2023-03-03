@@ -1,5 +1,9 @@
 import { RouteRecordRaw } from "vue-router";
 
 export interface MenuRoutesState {
-    menuRoutes: RouteRecordRaw[]
+    menuRoutes: RouteRecordRaw[],
+    breadCrumb: {
+        breadList: RouteRecordRaw[],
+        first_: string
+    }
 }

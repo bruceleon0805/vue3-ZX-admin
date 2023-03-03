@@ -1,0 +1,19 @@
+// as * 不需要加namespace
+@use 'grid.scss' as *;
+
+
+// 页面小于 576px
+@media screen and (max-width:$xs) {}
+
+
+
+//页面 小于 768px
+@media screen and (max-width:$sm) {
+    .sm-hidden {
+        display: none;
+    }
+}
+
+
+// 页面小于 992px
+@media screen and (max-width:$md) {}

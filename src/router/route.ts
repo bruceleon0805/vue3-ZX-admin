@@ -47,6 +47,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 path: '/dashboard',
                 name: 'dashboard',
                 meta: {
+                    isFixed: true, //固定显示在tags中
                     title: 'Dashboard',
                     icon: 'Odometer',
                     roles: ['admin', 'common']
@@ -94,7 +95,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 redirect: '/menu/menu1',
                 meta: {
                     title: 'menu',
-                    icon:'Menu',
+                    icon: 'Menu',
                     permissions: ['admin', 'common']
                 },
                 children: [
@@ -102,7 +103,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         path: '/menu/menu1',
                         name: 'menu1',
                         meta: {
-                            icon:'menu',
+                            icon: 'menu',
                             title: 'menu1',
                             roles: ['admin', 'common']
                         },
@@ -113,7 +114,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         name: 'menu2',
                         meta: {
                             title: 'menu2',
-                            icon:'menu',
+                            icon: 'menu',
                             roles: ['admin', 'common']
                         },
                         redirect: '/menu/menu2/menu22',
@@ -122,7 +123,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                                 path: '/menu/menu2/menu22',
                                 name: 'menu22',
                                 meta: {
-                                    icon:'menu',
+                                    icon: 'menu',
                                     title: 'menu22',
                                     roles: ['admin', 'common']
                                 },
@@ -132,7 +133,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                                 path: '/menu/menu2/menu23',
                                 name: 'menu23',
                                 meta: {
-                                    icon:'menu',
+                                    icon: 'menu',
                                     title: 'menu23',
                                     roles: ['admin', 'common']
                                 },

@@ -1,29 +1,25 @@
 <template>
     <el-header class="layout-header">
-        <div class="nav-bar" style="display: flex;height: 50px; align-items: center;border-bottom: 1px solid red;">
-            <el-icon @click="collapseChange">
-                <component :is="getOneEpIcon(isCollapse ? 'expand' : 'fold')"></component>
-            </el-icon>
-            <div class="header-container">
-                面包屑
-                图标等
-                用户信息
+        <div class="nav-container">
+            <div class="breadcrumb-box">
+                <el-icon :size="16" class="menu-icon mx10" @click="collapseChange">
+                    <component :is="getOneEpIcon(isCollapse ? 'expand' : 'fold')"></component>
+                </el-icon>
+                <div class="hidden">logo</div>
+                <Breadcrumb />
+                <div class="user">user</div>
             </div>
         </div>
-
-        <Tags />
-
     </el-header>
 </template>
 
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/theme';
 import { storeToRefs } from 'pinia';
-
-import { getOneEpIcon } from '@/utils/icon';
 import { defineAsyncComponent } from 'vue';
+import { getOneEpIcon } from '@/utils/icon';
 
-const Tags = defineAsyncComponent(()=>import('@/layouts/tags/tags.vue'))
+const Breadcrumb = defineAsyncComponent(() => import('@/layouts/component/breadcrumb.vue'))
 
 
 const themeStore = useThemeStore()
@@ -38,9 +34,22 @@ const collapseChange = () => {
 
 <style lang="scss" scoped>
 .layout-header {
+    padding: 0 !important;
+    height: auto !important;
+}
+
+.nav-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    widows: 100%;
     height: 100%;
+}
+
+.breadcrumb-box {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: var(--next-bg-topBar);
+    border-bottom: 1px solid var(--next-border-color-light);
 }
 </style>

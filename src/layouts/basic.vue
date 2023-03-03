@@ -1,44 +1,26 @@
 <template>
   <div class="layout-container">
     <el-container>
-
       <LayoutAside />
-
       <el-container direction="vertical">
         <!-- 头部 -->
         <LayoutHeader />
-
-        <Iconfont name="icon-sofa" :size="40" color="blue"></Iconfont>
-
-        <span class="iconfont icon-sofa"></span>
-        <el-main style="background-color: white;">Main
-
-          <el-button type="primary">button</el-button>
-          <el-input placeholder="搜索文本框">
-            <template #prefix>
-              <el-icon>
-                <component :is="iconPlus"></component>
-              </el-icon>
-            </template>
-          </el-input>
-        </el-main>
+          <!-- 内容         -->
+        <LayoutMain />
 
         <LayoutFooter />
-
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Plus } from '@element-plus/icons-vue';
 import { defineAsyncComponent } from 'vue';
-const iconPlus = Plus
-
 
 const LayoutAside = defineAsyncComponent(() => import('@/layouts/component/aside.vue'))
 const LayoutHeader = defineAsyncComponent(() => import('@/layouts/component/header.vue'))
 const LayoutFooter = defineAsyncComponent(() => import('@/layouts/component/footer.vue'))
+const LayoutMain = defineAsyncComponent(() => import('@/layouts/component/main.vue'))
 
 
 </script>

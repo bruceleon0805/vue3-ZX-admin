@@ -1,8 +1,8 @@
 
 
 export interface ThemeParams {
-
-    isCollapse: boolean
+    isCollapse: boolean,
+    transitionName:string
 
 
 }

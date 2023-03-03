@@ -34,7 +34,7 @@ export const frontEndRoutes = async () => {
     cacheMenu()
 
     // 缓存 有权限且没有开启隐藏的 tags Routes
-    cacheTags()
+    await cacheTags()
 
 
 }
@@ -214,23 +214,24 @@ const filterHiddenMenu = (menuRoutes: RouteRecordRaw[]) => {
 }
 
 
-
 /**
  * 缓存多级嵌套数组处理后的一维数组
  * @description 用于 tagsView、菜单搜索中：未过滤隐藏的(isHide)
  */
-const cacheTags = () => {
+const cacheTags = async () => {
     // 获取有权限的路由，否则 tagsView、菜单搜索中无权限的路由也将显示
     const userInfoStore = useUserInfoStore(pinia);
     const tagsRoutesStore = useTagsRoutesStore(pinia);
     const { userInfo } = storeToRefs(userInfoStore);
 
+    //过滤掉没有有权限 mete.roles 不在用户权限标识内的
     const rolesRoutes = hasRolesMenu(dynamicRoutes, userInfo.value.roles);
+    // 扁平化处理
     const twoStageRoutes = formatTwoStageRoutes(formatFlatteningRoutes(rolesRoutes))
 
-    //过滤隐藏的菜单
+    //过滤已经隐藏的菜单 mete.hidden===true
     const filterHidden = filterHiddenMenu(twoStageRoutes[0].children)
-
+    
     // 保存到 pinia setTagsRoutes 中
     tagsRoutesStore.setTagsRoutes(filterHidden);
 }

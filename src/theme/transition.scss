@@ -1,0 +1,90 @@
+// transition  动画
+// https://cn.vuejs.org/guide/built-ins/transition.html#transition
+
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+
+// 右划
+.slide-right-enter-from {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.slide-right-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+// 左划
+.slide-left-enter-from {
+    @extend .slide-right-leave-to;
+}
+
+.slide-left-leave-to {
+    @extend .slide-right-enter-from;
+}
+
+
+// 透明 opacity
+.opacity-enter-active,
+.opacity-leave-active {
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+
+.opacity-enter-from,
+.opacity-leave-to {
+    opacity: 0;
+}
+
+// move
+.move-enter-active,
+.move-leave-active {
+    transition: opacity 0.1s ease;
+}
+
+.move-enter-from,
+.move-leave-to {
+    opacity: 0;
+}
+
+// fade
+.fade-leave-active,
+.fade-enter-active {
+    transition: all 0.2s;
+}
+
+.fade-enter-from {
+    opacity: 0;
+    transition: all 0.2s;
+    transform: translateX(-30px);
+}
+
+.fade-leave-to {
+    opacity: 0;
+    transition: all 0.2s;
+    transform: translateX(30px);
+}
+
+
+//  面包屑 过渡动画
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+    transition: all 0.5s ease;
+}
+
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.breadcrumb-leave-active {
+    position: absolute;
+    z-index: -1;
+}

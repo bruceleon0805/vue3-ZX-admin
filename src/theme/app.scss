@@ -8,9 +8,86 @@
 // 定义样式变量
 :root {
     --zx-bg-white: #ffffff;
-    // --el-color-primary: green;
-    // --el-menu-bg-color:red;
-    // --el-menu-hover-bg-color:green;
+    --next-color-white: #ffffff;
+    --next-bg-main-color: #f8f8f8;
+    --next-bg-color: #f5f5ff;
+    --next-border-color-light: #f1f2f3;
+    --next-color-primary-lighter: #ecf5ff;
+    --next-color-success-lighter: #f0f9eb;
+    --next-color-warning-lighter: #fdf6ec;
+    --next-color-danger-lighter: #fef0f0;
+    --next-color-dark-hover: #0000001a;
+    --next-color-menu-hover: rgba(0, 0, 0, 0.2);
+    --next-color-user-hover: rgba(0, 0, 0, 0.04);
+    --next-color-setting-main: #e9eef3;
+    --next-color-setting-aside: #d3dce6;
+    --next-color-setting-header: #b3c0d1;
+
+    // 自定义
+    --next-bg-main: #1f1f1f;
+    --next-color-white: #ffffff;
+    --next-color-disabled: #191919;
+    --next-color-bar: #dadada;
+    --next-color-primary: #303030;
+    --next-border-color: #424242;
+    --next-border-black: #333333;
+    --next-border-columns: #2a2a2a;
+    --next-color-setting: #505050;
+    --next-text-color-regular: #9b9da1;
+    --next-text-color-placeholder: #7a7a7a;
+    --next-color-hover: #3c3c3c;
+    --next-color-hover-rgba: rgba(0, 0, 0, 0.3);
+
+    --next-bg-topBarColor: var(--next-color-bar) !important;
+
+    // root dark
+    /* --next-bg-main-color: var(--next-bg-main) !important;
+	--next-bg-topBar: var(--next-color-disabled) !important;
+	--next-bg-topBarColor: var(--next-color-bar) !important;
+	--next-bg-menuBar: var(--next-color-disabled) !important;
+	--next-bg-menuBarColor: var(--next-color-bar) !important;
+	--next-bg-menuBarActiveColor: var(--next-color-hover-rgba) !important;
+	--next-bg-columnsMenuBar: var(--next-color-disabled) !important;
+	--next-bg-columnsMenuBarColor: var(--next-color-bar) !important;
+	--next-border-color-light: var(--next-border-black) !important;
+	--next-color-primary-lighter: var(--next-color-primary) !important;
+	--next-color-success-lighter: var(--next-color-primary) !important;
+	--next-color-warning-lighter: var(--next-color-primary) !important;
+	--next-color-danger-lighter: var(--next-color-primary) !important;
+	--next-bg-color: var(--next-color-primary) !important;
+	--next-color-dark-hover: var(--next-color-hover) !important;
+	--next-color-menu-hover: var(--next-color-hover-rgba) !important;
+	--next-color-user-hover: var(--next-color-hover-rgba) !important;
+	--next-color-setting-main: var(--next-color-setting) !important;
+	--next-color-setting-aside: var(--next-color-hover) !important;
+	--next-color-setting-header: var(--next-color-primary) !important; */
+
+    // element plus
+    /* 	--el-color-white: var(--next-color-disabled) !important;
+	--el-text-color-primary: var(--next-color-bar) !important;
+	--el-border-color: var(--next-border-black) !important;
+	--el-border-color-light: var(--next-border-black) !important;
+	--el-border-color-lighter: var(--next-border-black) !important;
+	--el-border-color-extra-light: var(--el-color-primary-light-8) !important;
+	--el-text-color-regular: var(--next-text-color-regular) !important;
+	--el-bg-color: var(--next-color-disabled) !important;
+	--el-color-primary-light-9: var(--next-color-hover) !important;
+	--el-text-color-disabled: var(--next-text-color-placeholder) !important;
+	--el-text-color-disabled-base: var(--el-color-primary) !important;
+	--el-text-color-placeholder: var(--next-text-color-placeholder) !important;
+	--el-disabled-bg-color: var(--next-color-disabled) !important;
+	--el-fill-base: var(--next-color-white) !important;
+	--el-fill-colo: var(--next-color-hover-rgba) !important;
+	--el-fill-color: var(--next-color-hover-rgba) !important;
+	--el-fill-color-blank: var(--next-color-disabled) !important;
+	--el-fill-color-light: var(--next-color-hover-rgba) !important;
+	--el-bg-color-overlay: var(--el-color-primary-light-9) !important;
+	--el-mask-color: rgb(42 42 42 / 80%);
+	--el-fill-color-lighter: var(--next-color-hover-rgba) !important; */
+
+
+
+
 }
 
 html,
@@ -24,8 +101,74 @@ body,
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
-    background-color: white;
+    background-color: var(--next-bg-main-color);
     font-size: 14px;
     overflow: hidden;
     position: relative;
+}
+
+
+// 隐藏
+.hidden {
+    display: none;
+}
+
+// block
+.block {
+    display: block;
+}
+
+// flex 布局
+.flex {
+    display: flex;
+}
+
+
+
+
+/* 外边距、内边距全局样式
+如 .mt5 = margin-top:5px
+*/
+@for $i from 1 through 35 {
+    .mt#{$i} {
+        margin-top: #{$i}px !important;
+    }
+
+    .mr#{$i} {
+        margin-right: #{$i}px !important;
+    }
+
+    .mb#{$i} {
+        margin-bottom: #{$i}px !important;
+    }
+
+    .ml#{$i} {
+        margin-left: #{$i}px !important;
+    }
+
+    .mx#{$i} {
+        margin: 0 #{$i}px !important;
+    }
+
+    .my#{$i} {
+        margin: #{$i}px 0px !important;
+    }
+
+
+
+    .pt#{$i} {
+        padding-top: #{$i}px !important;
+    }
+
+    .pr#{$i} {
+        padding-right: #{$i}px !important;
+    }
+
+    .pb#{$i} {
+        padding-bottom: #{$i}px !important;
+    }
+
+    .pl#{$i} {
+        padding-left: #{$i}px !important;
+    }
 }

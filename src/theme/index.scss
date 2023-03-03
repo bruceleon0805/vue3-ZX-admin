@@ -1,1 +1,5 @@
-@import './app.scss';
+@use './app.scss';
+
+@use 'transition.scss'; // 动画
+
+@use 'media/index.scss' // responsive
