@@ -6,6 +6,10 @@ import { componentSize, type ThemeParams } from './theme.d'
  * 主题配置
  */
 export const useThemeStore = defineStore('themeStore', {
+    persist: {
+        /* 需要持久化的项目 */
+        paths: ['isCollapse', 'componentSize']
+    },
     state: (): ThemeParams => {
         return {
             // 是否折叠菜单
@@ -14,7 +18,7 @@ export const useThemeStore = defineStore('themeStore', {
             transitionName: 'slide-right',
             // element-plus 组件大小 配置  'large' | 'default' | 'small'
             // https://element-plus.gitee.io/zh-CN/component/config-provider.html#config-provider-attributes
-            componentSize: componentSize.default
+            componentSize: componentSize.DEFAULT
         }
     },
     actions: {

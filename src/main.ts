@@ -15,6 +15,8 @@ import './theme/index.scss'
 
 import { pinia } from './stores'
 
+import { i18n } from './i18n'
+
 const app = createApp(App)
 
 app.use(pinia)
@@ -22,5 +24,5 @@ app.use(router)
 
 //useIcon.ePlus(app) // 使用element-plus icon ,vite 开启自动导入就不需要
 useIcon.iconfont(app) // 全局导入， 可以使用 iconfont 组件
-
+app.use(i18n) // 语言设置
 app.mount('#app')

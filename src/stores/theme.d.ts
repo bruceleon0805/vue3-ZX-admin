@@ -1,14 +1,20 @@
 
 
+/**
+ * 组件大小
+ */
 export enum componentSize {
-    'large',
-    'default',
-    'small'
+    LARGE = 'large',
+    DEFAULT = 'default',
+    SMALL = 'small'
 }
+
+
+
 
 
 export interface ThemeParams {
     isCollapse: boolean,
     transitionName: string,
-    componentSize: componentSize.default
+    componentSize: componentSize
 }

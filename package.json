@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "@intlify/unplugin-vue-i18n": "^0.8.2",
     "element-plus": "^2.2.32",
     "pinia": "^2.0.32",
     "pinia-plugin-persistedstate": "^3.1.0",
@@ -22,6 +23,7 @@
     "unplugin-vue-components": "^0.24.0",
     "vite-plugin-inspect": "^0.7.15",
     "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

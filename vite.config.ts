@@ -1,5 +1,8 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import { resolve, dirname } from 'node:path'
+
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -15,8 +18,12 @@ import IconsResolver from 'unplugin-icons/resolver'
 import path from 'path'
 import Inspect from 'vite-plugin-inspect'
 
-const pathSrc = fileURLToPath(new URL('./src', import.meta.url))
+/* 
+  i18n
+*/
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
+const pathSrc = fileURLToPath(new URL('./src', import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -57,6 +64,11 @@ export default defineConfig({
       autoInstall: true,
     }),
     Inspect(),
+    VueI18nPlugin({
+      /* options */
+      // locale messages resource pre-compile option
+      include: path.resolve(pathSrc, 'i18n/locales/**'),
+    }),
   ],
   resolve: {
     alias: {

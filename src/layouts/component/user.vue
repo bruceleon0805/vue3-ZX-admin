@@ -5,13 +5,13 @@
                 <Iconfont name="icon_zitidaxiao" title="字体大小" />
             </div>
             <template #dropdown>
-                <el-dropdown-item command="large">
+                <el-dropdown-item command="large" :disabled="componentSize === 'large'">
                     大
                 </el-dropdown-item>
-                <el-dropdown-item command="default">
+                <el-dropdown-item command="default" :disabled="componentSize === 'default'">
                     默认
                 </el-dropdown-item>
-                <el-dropdown-item command="small">
+                <el-dropdown-item command="small" :disabled="componentSize === 'small'">
                     小
                 </el-dropdown-item>
             </template>
@@ -96,6 +96,7 @@
 </template>
 
 <script setup lang="ts">
+import { useThemeStore } from '@/stores/theme';
 import { useTokenStore } from '@/stores/token';
 import { useUserInfoStore } from '@/stores/userInfo';
 import { ElMessageBox } from 'element-plus';
@@ -107,10 +108,8 @@ const router = useRouter()
 const userInfoStore = useUserInfoStore()
 const { userInfo } = storeToRefs(userInfoStore)
 
-
-
-
-
+const themeStore = useThemeStore()
+const { componentSize } = storeToRefs(themeStore)
 
 const UserNews = defineAsyncComponent(() => import('@/layouts/component/header/userNews.vue'))
 const Search = defineAsyncComponent(() => import('@/layouts/component/header/search.vue'))
@@ -121,9 +120,8 @@ const flex = '1'
  * 组件大小设置
  */
 const componentSizeChange = (size: string) => {
-    console.log(size);
-
-
+    componentSize.value = size
+    window.location.reload()
 }
 /**
  * 语言切换
@@ -184,7 +182,7 @@ const dropdownClick = (command: string) => {
             删除token
             用户信息
             */
-           tokenStore.setToken('')
+            tokenStore.setToken('')
         })
     } else {
         router.push(command)

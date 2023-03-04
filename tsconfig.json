@@ -1,14 +1,22 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
-    "types": ["element-plus/global"]
+    "types": [
+      "element-plus/global",
+      "@intlify/unplugin-vue-i18n/messages"
+    ]
   },
-
   "references": [
     {
       "path": "./tsconfig.config.json"
