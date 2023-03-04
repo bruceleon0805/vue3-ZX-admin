@@ -46,10 +46,8 @@
         <div class="user-icon">
             <el-popover placement="bottom" trigger="click" transition="el-zoom-in-top" :width="300" :persistent="false">
                 <template #reference>
-                    <el-badge :is-dot="true">
-                        <el-icon>
-                            <i-ep-bell></i-ep-bell>
-                        </el-icon>
+                    <el-badge is-dot class="flex">
+                        <i-ep-bell></i-ep-bell>
                     </el-badge>
                 </template>
                 <template #default>
@@ -235,6 +233,8 @@ const dropdownClick = (command: string) => {
                 animation: logoAnimation 0.3s ease-in-out;
             }
         }
+
+
     }
 
     /*  :deep(.el-dropdown) {
