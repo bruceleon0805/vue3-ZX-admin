@@ -41,7 +41,7 @@ export const useUserInfoStore = defineStore('userInfoStore', {
                     const btnActionList = userName == 'admin' ? ['btn.add', 'btn.del', 'btn.edit', 'btn.link'] : ['btn.add', 'btn.link']
                     const userInfos = {
                         userName: userName,
-                        photo:
+                        avatar:
                             userName === 'admin'
                                 ? 'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
                                 : 'https://img2.baidu.com/it/u=2370931438,70387529&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',

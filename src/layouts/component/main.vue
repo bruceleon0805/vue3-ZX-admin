@@ -1,7 +1,7 @@
 
 <template>
     <Tags />
-    
+
     <el-main class="layout-main">
         <router-view v-slot="{ Component, route }">
             <transition :name="transitionName" mode="out-in">

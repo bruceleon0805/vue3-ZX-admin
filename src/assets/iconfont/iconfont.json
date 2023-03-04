@@ -1,0 +1,65 @@
+{
+  "id": "3904615",
+  "name": "vue3-zx-admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1389605",
+      "name": "color",
+      "font_class": "color",
+      "unicode": "e760",
+      "unicode_decimal": 59232
+    },
+    {
+      "icon_id": "1625015",
+      "name": "icon_skin",
+      "font_class": "icon_skin",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "18311481",
+      "name": "中英文 中文",
+      "font_class": "zhongyingwen2zhongwen",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "13766783",
+      "name": "icon_zitidaxiao",
+      "font_class": "icon_zitidaxiao",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "17392145",
+      "name": "icon-webicon318",
+      "font_class": "icon-webicon318",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "704669",
+      "name": "sofa",
+      "font_class": "sofa",
+      "unicode": "eaa9",
+      "unicode_decimal": 60073
+    },
+    {
+      "icon_id": "7821167",
+      "name": "sofa",
+      "font_class": "sofa1",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "8860641",
+      "name": "Sofa",
+      "font_class": "Sofa",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    }
+  ]
+}

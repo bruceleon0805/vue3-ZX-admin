@@ -1,11 +1,8 @@
+
 <template>
-    <el-footer>
-        Footer
-    
-    
-    
-    
-    </el-footer>
+    <div class="search">
+
+    </div>
 </template>
 
 <script setup lang="ts">

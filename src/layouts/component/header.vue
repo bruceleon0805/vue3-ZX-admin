@@ -7,7 +7,7 @@
                 </el-icon>
                 <div class="hidden">logo</div>
                 <Breadcrumb />
-                <div class="user">user</div>
+                <User />
             </div>
         </div>
     </el-header>
@@ -20,6 +20,7 @@ import { defineAsyncComponent } from 'vue';
 import { getOneEpIcon } from '@/utils/icon';
 
 const Breadcrumb = defineAsyncComponent(() => import('@/layouts/component/breadcrumb.vue'))
+const User = defineAsyncComponent(() => import('@/layouts/component/user.vue'))
 
 
 const themeStore = useThemeStore()
@@ -52,4 +53,7 @@ const collapseChange = () => {
     background-color: var(--next-bg-topBar);
     border-bottom: 1px solid var(--next-border-color-light);
 }
+
+
+
 </style>
