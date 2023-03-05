@@ -1,10 +1,17 @@
 
 export enum I18N {
-    ZHCN = 'zh-cn',
+    ZHCN = 'zh-CN',
     EN = 'en'
 }
 
-export interface GlobalState{
-    isBackEndRoutes:boolean
-    i18n: I18N
+export interface Language {
+    name: string,
+    el: Record
+}
+
+
+export interface GlobalState {
+    isBackEndRoutes: boolean
+    local: I18N,
+    elLocal: Language
 }

@@ -1,4 +1,4 @@
-import { pinia } from "@/stores"
+import { store } from "@/stores"
 import { useMenuRoutesStore } from "@/stores/menuRoutes"
 import { useTagsRoutesStore } from "@/stores/tagsRoutes"
 import { useTokenStore } from "@/stores/token"
@@ -14,13 +14,13 @@ import { dynamicRoutes, errorRoutes } from "./route"
  * 前端路由
  */
 export const frontEndRoutes = async () => {
-    const tokenStore = useTokenStore(pinia)
+    const tokenStore = useTokenStore(store)
     const { token } = storeToRefs(tokenStore)
     // 没有token 返回
     if (!token.value) return true;
 
     // 获取用户信息
-    const userInfoStore = useUserInfoStore(pinia)
+    const userInfoStore = useUserInfoStore(store)
     await userInfoStore.setUserInfo()
     const { userInfo } = storeToRefs(userInfoStore)
 
@@ -131,7 +131,7 @@ const formatTwoStageRoutes = (arr: any) => {
  * @returns 返回有当前用户权限标识的路由数组
  */
 const filterAuthRoutes = (children: Array<RouteRecordRaw>) => {
-    const userInfoStore = useUserInfoStore(pinia)
+    const userInfoStore = useUserInfoStore(store)
     const { userInfo } = storeToRefs(userInfoStore);
     let filterRoute: any = [];
     children.forEach((route: any) => {
@@ -187,8 +187,8 @@ const hasRolesMenu = (routes: any, roles: any) => {
  * @description 用于 tagsView、菜单搜索中：未过滤隐藏的(isHide)
  */
 export function cacheMenu() {
-    const userInfoStore = useUserInfoStore(pinia);
-    const mnueRoutesStore = useMenuRoutesStore(pinia);
+    const userInfoStore = useUserInfoStore(store);
+    const mnueRoutesStore = useMenuRoutesStore(store);
     const { userInfo } = storeToRefs(userInfoStore);
 
     const menuRoutes = hasRolesMenu(dynamicRoutes[0].children, userInfo.value.roles)
@@ -220,8 +220,8 @@ const filterHiddenMenu = (menuRoutes: RouteRecordRaw[]) => {
  */
 const cacheTags = async () => {
     // 获取有权限的路由，否则 tagsView、菜单搜索中无权限的路由也将显示
-    const userInfoStore = useUserInfoStore(pinia);
-    const tagsRoutesStore = useTagsRoutesStore(pinia);
+    const userInfoStore = useUserInfoStore(store);
+    const tagsRoutesStore = useTagsRoutesStore(store);
     const { userInfo } = storeToRefs(userInfoStore);
 
     //过滤掉没有有权限 mete.roles 不在用户权限标识内的

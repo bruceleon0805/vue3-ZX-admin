@@ -18,15 +18,15 @@
 </template>
 
 <script setup lang="ts">
-import { pinia } from '@/stores';
+import { store } from '@/stores';
 import { useKeepAliveStore } from '@/stores/keepAlive';
 import { useTagsRoutesStore } from '@/stores/tagsRoutes';
 import { storeToRefs } from 'pinia';
 import { inject, nextTick, onBeforeMount, onMounted, reactive, watch } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter, type RouteRecordRaw } from 'vue-router';
 
-const tagsRoutesStore = useTagsRoutesStore(pinia)
-const keepAliveStore = useKeepAliveStore(pinia)
+const tagsRoutesStore = useTagsRoutesStore(store)
+const keepAliveStore = useKeepAliveStore(store)
 const { tagsList, tagsRoutes } = storeToRefs(tagsRoutesStore)
 
 const route = useRoute()

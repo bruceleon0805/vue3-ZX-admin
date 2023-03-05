@@ -1,9 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { resolve, dirname } from 'node:path'
 
-
-import { defineConfig } from 'vite'
+import { loadEnv, type ConfigEnv, type UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // 按需引入 element-plus
@@ -24,55 +22,63 @@ import Inspect from 'vite-plugin-inspect'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 const pathSrc = fileURLToPath(new URL('./src', import.meta.url))
+const root = process.cwd()
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use "@/theme/element-plus.scss" as *;`,
+export default ({ command, mode }: ConfigEnv): UserConfig => {
+  let env = {} as any
+  const isBuild = command === 'build'
+  
+  env = loadEnv(mode, root)
+
+  return {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/theme/element-plus.scss" as *;`,
+        },
       },
     },
-  },
-  plugins: [
-    vue(),
-    AutoImport({
-      resolvers: [
-        ElementPlusResolver(),
-        // Auto import icon components
-        // 自动导入图标组件
-        IconsResolver({
-          prefix: 'Icon',
-        }),
-      ],
-      dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
-    }),
-    Components({
-      resolvers: [
-        ElementPlusResolver({
-          importStyle: "sass"
-        }),
-        // Auto register icon components
-        // 自动注册图标组件
-        IconsResolver({
-          enabledCollections: ['ep'],
-        }),
-      ],
-      dts: path.resolve(pathSrc, 'components.d.ts'),
-    }),
-    Icons({
-      autoInstall: true,
-    }),
-    Inspect(),
-    VueI18nPlugin({
-      /* options */
-      // locale messages resource pre-compile option
-      include: path.resolve(pathSrc, 'i18n/locales/**'),
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': pathSrc
+    plugins: [
+      vue(),
+      AutoImport({
+        resolvers: [
+          ElementPlusResolver(),
+          // Auto import icon components
+          // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon',
+          }),
+        ],
+        dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
+      }),
+      Components({
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: "sass"
+          }),
+          // Auto register icon components
+          // 自动注册图标组件
+          IconsResolver({
+            enabledCollections: ['ep'],
+          }),
+        ],
+        dts: path.resolve(pathSrc, 'components.d.ts'),
+      }),
+      Icons({
+        autoInstall: true,
+      }),
+      Inspect(),
+      VueI18nPlugin({
+        /* options */
+        // locale messages resource pre-compile option
+        include: path.resolve(pathSrc, 'i18n/locales/**'),
+      }),
+    ],
+    resolve: {
+      alias: {
+        '@': pathSrc
+      }
     }
   }
-})
+}
+

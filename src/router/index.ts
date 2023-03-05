@@ -1,9 +1,10 @@
 import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/config'
-import { pinia } from '@/stores'
+import { store } from '@/stores'
 import { useGlobalStore } from '@/stores/global'
 import { useMenuRoutesStore } from '@/stores/menuRoutes'
 import { useTokenStore } from '@/stores/token'
 import { storeToRefs } from 'pinia'
+import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { frontEndRoutes } from './frontEnd'
 
@@ -19,7 +20,7 @@ const router = createRouter({
  * 路由获取方式 前端 ｜｜ 后端
  * 
  */
-const globalStore = useGlobalStore(pinia)
+const globalStore = useGlobalStore(store)
 const { isBackEndRoutes } = storeToRefs(globalStore)
 
 
@@ -34,14 +35,14 @@ const homePath = HOME_URL
  */
 router.beforeEach(async (to, _, next) => {
   // token
-  const tokenStore = useTokenStore(pinia)
+  const tokenStore = useTokenStore(store)
   const token = tokenStore.getValidToken()
   if (token) {
     if (to.path === loginRoute) {
       next(homePath)
     } else {
       // 获取路由列表 初始化路由
-      const menuRoutesStore = useMenuRoutesStore(pinia)
+      const menuRoutesStore = useMenuRoutesStore(store)
       const { menuRoutes: routes } = storeToRefs(menuRoutesStore)
       /**
        * 每次刷新 routes 首次为空 再次 路由生成后不再为空
@@ -49,7 +50,7 @@ router.beforeEach(async (to, _, next) => {
       if (routes.value.length === 0) {
         if (isBackEndRoutes.value) {
           //后端路由 TODO
-          
+
         } else {
           //前端路由
           await frontEndRoutes()
@@ -68,5 +69,23 @@ router.beforeEach(async (to, _, next) => {
     }
   }
 })
+
+
+export const resetRouter = (): void => {
+  const resetWhiteNameList = ['login', 'noAuth', 'notFound']
+  router.getRoutes().forEach((route) => {
+    const { name } = route
+    if (name && !resetWhiteNameList.includes(name as string)) {
+      router.hasRoute(name) && router.removeRoute(name)
+    }
+  })
+}
+
+
+
+export const setupRouter = (app: App<Element>) => {
+  app.use(router)
+}
+
 
 export default router

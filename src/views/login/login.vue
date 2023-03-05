@@ -28,7 +28,7 @@
 import { reactive, ref } from 'vue'
 import { ElMessage, type FormInstance } from 'element-plus'
 import { useTokenStore } from '@/stores/token';
-import { pinia } from '@/stores';
+import { store } from '@/stores';
 import { useGlobalStore } from '@/stores/global';
 import { storeToRefs } from 'pinia';
 import { frontEndRoutes } from '@/router/frontEnd';
@@ -49,10 +49,10 @@ const ruleForm = reactive({
 
 
 const login = async () => {
-    const tokenStore = useTokenStore(pinia)
+    const tokenStore = useTokenStore(store)
     const token = Math.random().toString(36)
     tokenStore.setToken(token)
-    const globalStore = useGlobalStore(pinia)
+    const globalStore = useGlobalStore(store)
     const { isBackEndRoutes } = storeToRefs(globalStore)
 
     const userStore = useUserInfoStore()
