@@ -18,7 +18,7 @@
                         深色模式
                     </div>
                     <div class="dark-model-value">
-                        <el-switch size="small" v-model="state.isDark" @change="darkChange"></el-switch>
+                        <el-switch size="small" v-model="isDark" @change="darkChange"></el-switch>
                     </div>
                 </div>
 
@@ -31,10 +31,16 @@
 import { ElMessage } from 'element-plus';
 import { reactive } from 'vue';
 
+import { useDark, useToggle } from '@vueuse/core'
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+
+
+
+
 const state = reactive({
     open: false,
-    primary: '#409EFF',
-    isDark: false
+    primary: '#409EFF'
 })
 
 const openDrawer = () => {
@@ -62,9 +68,7 @@ const colorPickerChange = () => {
 
 
 const darkChange = () => {
-    const body = document.documentElement as HTMLElement
-    if (state.isDark) body.setAttribute('data-theme', 'dark')
-    else body.setAttribute('data-theme', '')
+    toggleDark(isDark.value)
 }
 
 

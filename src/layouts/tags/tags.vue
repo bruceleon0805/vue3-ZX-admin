@@ -126,7 +126,6 @@ const closeTag = async (item: RouteRecordRaw) => {
 <style lang="scss" scoped>
 // default
 .tags {
-    background-color: var(--el-color-white);
     border-bottom: 1px solid var(--next-border-color-right);
     position: relative;
     z-index: 4;

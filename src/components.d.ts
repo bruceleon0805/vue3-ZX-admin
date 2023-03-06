@@ -45,6 +45,7 @@ declare module '@vue/runtime-core' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElScrollerbar: typeof import('element-plus/es')['ElScrollerbar']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElSw: typeof import('element-plus/es')['ElSw']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
