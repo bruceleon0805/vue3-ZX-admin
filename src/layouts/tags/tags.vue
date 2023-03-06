@@ -48,8 +48,10 @@ const initTags = () => {
 const addCurrentTag = async (path: string) => {
     // 查找当前路由是否在 全部tagsRoutes列表中，如果有取出
     const hasTags: RouteRecordRaw = tagsRoutes.value.find(tag => tag.path === path) || Object()
-    // 添加当前路由至 tagsList
-    await tagsRoutesStore.setTagsList(hasTags)
+    if (Object.keys(hasTags).length) {
+        // 添加当前路由至 tagsList
+        await tagsRoutesStore.setTagsList(hasTags)
+    }
 }
 
 /**
