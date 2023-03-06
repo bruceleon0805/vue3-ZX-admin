@@ -46,7 +46,7 @@
         <div class="user-icon">
             <el-popover placement="bottom" trigger="click" transition="el-zoom-in-top" :width="300" :persistent="false">
                 <template #reference>
-                    <el-badge is-dot class="flex">
+                    <el-badge is-dot style="display: flex !important;">
                         <i-ep-bell></i-ep-bell>
                     </el-badge>
                 </template>
