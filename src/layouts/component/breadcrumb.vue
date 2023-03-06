@@ -9,7 +9,7 @@
                         </el-icon>
                         <div>{{ item.meta?.title }}</div>
                     </span>
-                    <a v-else @click="breadClick(item)">
+                    <a v-else @click="breadClick(item)" class="flex">
                         <el-icon :size="16" class="mr5">
                             <component :is="getOneEpIcon(item.meta?.icon)"></component>
                         </el-icon>

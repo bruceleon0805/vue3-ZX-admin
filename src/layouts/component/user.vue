@@ -22,10 +22,10 @@
                 <Iconfont name="zhongyingwen2zhongwen" title="语言" />
             </div>
             <template #dropdown>
-                <el-dropdown-item command="zh-cn">
+                <el-dropdown-item command="zh-CN" :disabled="local === 'zh-CN'">
                     简体中文
                 </el-dropdown-item>
-                <el-dropdown-item command="en">
+                <el-dropdown-item command="en" :disabled="local === 'en'">
                     English
                 </el-dropdown-item>
             </template>
@@ -55,9 +55,9 @@
                 </template>
             </el-popover>
         </div>
-        <div class="user-icon mr10" @click="fullscreenClick">
+        <!-- <div class="user-icon mr10" @click="fullscreenClick">
             <el-icon title="全屏"><i-ep-full-screen /></el-icon>
-        </div>
+        </div> -->
 
         <el-dropdown @command="dropdownClick">
             <span class="user-link">
@@ -85,13 +85,7 @@
 
         </el-dropdown>
 
-
-
-
-
-
-        <Search />
-
+        <Search ref="searchRef" />
     </div>
 </template>
 
@@ -101,8 +95,11 @@ import { useTokenStore } from '@/stores/token';
 import { useUserInfoStore } from '@/stores/userInfo';
 import { ElMessageBox } from 'element-plus';
 import { storeToRefs } from 'pinia';
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, inject, ref, type Ref } from 'vue';
 import { useRouter } from 'vue-router';
+import type { componentSize } from '@/stores/theme.d'
+import { I18N, useGlobalStoreWithOut } from '@/stores/global';
+
 const tokenStore = useTokenStore()
 const router = useRouter()
 const userInfoStore = useUserInfoStore()
@@ -113,35 +110,40 @@ const { componentSize } = storeToRefs(themeStore)
 
 const UserNews = defineAsyncComponent(() => import('@/layouts/component/header/userNews.vue'))
 const Search = defineAsyncComponent(() => import('@/layouts/component/header/search.vue'))
+
+const globalStore = useGlobalStoreWithOut()
+const { local } = storeToRefs(globalStore)
+
+const searchRef = ref()
+
 // flex num
 const flex = '1'
 
 /**
  * 组件大小设置
  */
-const componentSizeChange = (size: string) => {
+const componentSizeChange = (size: componentSize) => {
     componentSize.value = size
     window.location.reload()
 }
 /**
  * 语言切换
  */
-const languageChange = (lang: string) => {
-    console.log(lang);
-
-
+const languageChange = (local: I18N) => {
+    globalStore.setCurrentLocal(local)
 }
 /* 
 搜索
  */
 const searchClick = () => {
-
+    searchRef.value.openSearch()
 }
 
+const SettingDrawerRef: Ref = inject('SettingDrawerRef') as Ref
 /* 布局配置
  */
 const layoutSetting = () => {
-
+    SettingDrawerRef.value.openDrawer()
 }
 
 /* 全屏 */

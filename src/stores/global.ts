@@ -29,9 +29,9 @@ export const localeMap = [
 
 export const useGlobalStore = defineStore('globalStore', {
   persist: {
-    paths: ['elLocal']
+    paths: ['elLocal', 'local']
   },
-  state(): GlobalState {
+  state: (): GlobalState => {
     return {
       //是否后端提供路由
       isBackEndRoutes: false,
