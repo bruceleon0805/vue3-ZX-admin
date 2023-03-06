@@ -46,7 +46,7 @@
         <div class="user-icon">
             <el-popover placement="bottom" trigger="click" transition="el-zoom-in-top" :width="300" :persistent="false">
                 <template #reference>
-                    <el-badge is-dot style="display: flex !important;">
+                    <el-badge is-dot>
                         <i-ep-bell></i-ep-bell>
                     </el-badge>
                 </template>
@@ -197,6 +197,9 @@ const dropdownClick = (command: string) => {
 </script>
 
 <style scoped lang="scss">
+.el-badge{
+    display: flex !important;
+}
 .user {
     display: flex;
     flex: v-bind(flex);
