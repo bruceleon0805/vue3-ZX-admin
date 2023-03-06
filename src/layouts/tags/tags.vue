@@ -22,7 +22,7 @@ import { store } from '@/stores';
 import { useKeepAliveStore } from '@/stores/keepAlive';
 import { useTagsRoutesStore } from '@/stores/tagsRoutes';
 import { storeToRefs } from 'pinia';
-import { inject, nextTick, onBeforeMount, onMounted, reactive, watch } from 'vue';
+import { inject, nextTick, onBeforeMount, onMounted } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter, type RouteRecordRaw } from 'vue-router';
 
 const tagsRoutesStore = useTagsRoutesStore(store)

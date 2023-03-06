@@ -185,6 +185,7 @@ const dropdownClick = (command: string) => {
             用户信息
             */
             tokenStore.setToken('')
+            router.push('/login')
         })
     } else {
         router.push(command)
@@ -197,9 +198,10 @@ const dropdownClick = (command: string) => {
 </script>
 
 <style scoped lang="scss">
-.el-badge{
+.el-badge {
     display: flex !important;
 }
+
 .user {
     display: flex;
     flex: v-bind(flex);
