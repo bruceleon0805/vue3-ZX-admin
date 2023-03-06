@@ -4,7 +4,7 @@ import App from './App.vue'
 import { setupRouter } from './router'
 
 //icon 相关
-import { useIcon } from './utils/icon'
+//import { useIcon } from './utils/icon'
 
 //自定义样式
 import './theme/index.scss'

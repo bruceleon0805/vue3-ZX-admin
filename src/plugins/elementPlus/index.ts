@@ -1,6 +1,10 @@
 import type { App } from "vue";
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+/* 
+样式
+*/
+import 'element-plus/dist/index.css'
 
 /**
  * 
