@@ -2,18 +2,14 @@
     <template v-for="item in subMenus">
         <el-sub-menu :key="item.path" :index="item.path" v-if="item.children && item.children.length > 0">
             <template #title>
-                <el-icon>
-                    <component :is="getOneEpIcon(item.meta?.icon)"></component>
-                </el-icon>
+                <Icon :name="item.meta?.icon"/>
                 <span>{{ item.meta?.title }}</span>
             </template>
             <subMenu :sub-menus="item.children" />
         </el-sub-menu>
         <template v-else>
             <el-menu-item :index="item.path" :key="item.path">
-                <el-icon>
-                    <component :is="getOneEpIcon(item.meta?.icon)"></component>
-                </el-icon>
+                <Icon :name="item.meta?.icon"/>
                 <template #title>
                     <span>{{ item.meta?.title }}</span>
                 </template>
@@ -24,8 +20,6 @@
 
 <script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
-
-import { getOneEpIcon } from '@/utils/icon';
 
 /**
  * 基于类型的声明

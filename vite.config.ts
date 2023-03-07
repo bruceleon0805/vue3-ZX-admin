@@ -9,7 +9,10 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-// icon 图标
+// icon 图标 
+/* 
+提示： 自动导入不能用于动态component
+*/
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
@@ -27,7 +30,7 @@ const root = process.cwd()
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = {} as any
   const isBuild = command === 'build'
-  
+
   env = loadEnv(mode, root)
 
   return {
@@ -59,7 +62,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           // Auto register icon components
           // 自动注册图标组件
           IconsResolver({
-            enabledCollections: ['ep'],
+            prefix: 'i', // 自动引入的Icon组件统一前缀，默认为 i，设置false为不需要前缀
+            // {prefix}-{collection}-{icon} 使用组件解析器时，您必须遵循名称转换才能正确推断图标。
+            // alias: { park: 'icon-park' } 集合的别名
+            // https://icon-sets.iconify.design/ 
+            enabledCollections: ['ep','mdi'],
           }),
         ],
         dts: path.resolve(pathSrc, 'components.d.ts'),

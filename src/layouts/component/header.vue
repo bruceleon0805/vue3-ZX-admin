@@ -2,9 +2,7 @@
     <el-header class="layout-header">
         <div class="nav-container">
             <div class="breadcrumb-box">
-                <el-icon :size="16" class="menu-icon mx10" @click="collapseChange">
-                    <component :is="getOneEpIcon(isCollapse ? 'expand' : 'fold')"></component>
-                </el-icon>
+                <Icon :name="isCollapse ? 'ep-Expand' : 'ep-Fold'" :size="16" class="menu-icon mx10" @click="collapseChange"/>
                 <div class="hidden">logo</div>
                 <Breadcrumb />
                 <User />
@@ -17,7 +15,6 @@
 import { useThemeStore } from '@/stores/theme';
 import { storeToRefs } from 'pinia';
 import { defineAsyncComponent } from 'vue';
-import { getOneEpIcon } from '@/utils/icon';
 
 const Breadcrumb = defineAsyncComponent(() => import('@/layouts/component/breadcrumb.vue'))
 const User = defineAsyncComponent(() => import('@/layouts/component/user.vue'))

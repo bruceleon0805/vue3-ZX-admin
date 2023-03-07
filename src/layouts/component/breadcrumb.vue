@@ -4,15 +4,12 @@
             <transition-group name="breadcrumb">
                 <el-breadcrumb-item v-for="(item, index) in breadList" :key="index">
                     <span v-if="index === breadList.length - 1" class="flex breadcrumb-span">
-                        <el-icon :size="14" class="mr5">
-                            <component :is="getOneEpIcon(item.meta?.icon)"></component>
-                        </el-icon>
+                        <Icon :name="item.meta?.icon" class="mr5" :size="14" />
+
                         <div>{{ item.meta?.title }}</div>
                     </span>
                     <a v-else @click="breadClick(item)" class="flex">
-                        <el-icon :size="16" class="mr5">
-                            <component :is="getOneEpIcon(item.meta?.icon)"></component>
-                        </el-icon>
+                        <Icon :name="item.meta?.icon" class="mr5" :size="16" />
                         {{ item.meta?.title }}
                     </a>
                 </el-breadcrumb-item>
@@ -26,7 +23,7 @@ import { useMenuRoutesStore } from '@/stores/menuRoutes';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter, type RouteRecordRaw } from 'vue-router';
-import { getOneEpIcon } from '@/utils/icon';
+
 
 const menuRoutesStore = useMenuRoutesStore()
 const { menuRoutes } = storeToRefs(menuRoutesStore)

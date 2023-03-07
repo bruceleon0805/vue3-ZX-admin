@@ -6,6 +6,9 @@ import { defineStore } from "pinia";
 import type { UserState } from './userInfo.d'
 
 export const useUserInfoStore = defineStore('userInfoStore', {
+    persist:{
+        paths:['userInfo.userName']
+    },
     state: (): UserState => {
         return {
             userInfo: {

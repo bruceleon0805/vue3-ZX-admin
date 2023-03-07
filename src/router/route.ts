@@ -38,9 +38,9 @@ export const errorRoutes: RouteRecordRaw[] = [
 export const dynamicRoutes: RouteRecordRaw[] = [
     {
         path: '/',
-        name: 'home',
+        name: 'root',
         component: () => import('@/layouts/basic.vue'),
-        redirect: '/home',
+        redirect: '/dashboard',
         children: [
             {
 
@@ -49,10 +49,52 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 meta: {
                     isFixed: true, //固定显示在tags中
                     title: 'Dashboard',
-                    icon: 'Odometer',
+                    icon: 'ep-Odometer',
                     roles: ['admin', 'common']
                 },
                 component: () => import('@/views/dashboard/dashboard.vue')
+            },
+            {
+                path: '/system',
+                name: 'System',
+                redirect: '/system/menu',
+                meta: {
+                    title: '系统管理',
+                    icon: 'ep-Setting',
+                    roles: ['admin','common']
+                },
+                children: [
+                    {
+                        path: '/system/menu',
+                        name: 'SystemMenu',
+                        meta: {
+                            title: '菜单管理',
+                            icon: 'ep-Menu',
+                            roles: ['admin','common']
+                        },
+                        component: () => import('@/views/system/menu/menu.vue')
+                    },
+                    {
+                        path: '/system/roles',
+                        name: 'SystemRoles',
+                        meta: {
+                            title: '角色管理',
+                            icon: 'ep-Menu',
+                            roles: ['admin','common']
+                        },
+                        component: () => import('@/views/system/roles/roles.vue')
+                    },
+                    {
+                        path: '/system/user',
+                        name: 'SystemUser',
+                        meta: {
+                            title: '角色管理',
+                            icon: 'ep-Menu',
+                            roles: ['admin','common']
+                        },
+                        component: () => import('@/views/system/user/user.vue')
+                    }
+                ]
             },
             {
 
@@ -61,7 +103,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 meta: {
                     hidden: true,
                     title: 'hidden',
-                    icon: 'Odometer',
+                    icon: 'ep-Odometer',
                     roles: ['admin', 'common']
                 },
                 component: () => import('@/views/dashboard/dashboard.vue')
@@ -72,7 +114,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'system',
                 meta: {
                     title: 'System',
-                    icon: 'setting',
+                    icon: 'ep-Setting',
                     roles: ['admin', 'common']
                 },
                 redirect: '/system/menu',
@@ -82,7 +124,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         name: 'systemMenu',
                         meta: {
                             title: 'System',
-                            icon: 'setting',
+                            icon: 'ep-Setting',
                             roles: ['admin', 'common']
                         },
                         component: () => import('@/views/system/menu/menu.vue'),
@@ -95,7 +137,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 redirect: '/menu/menu1',
                 meta: {
                     title: 'menu',
-                    icon: 'Menu',
+                    icon: 'ep-Menu',
                     permissions: ['admin', 'common']
                 },
                 children: [
@@ -103,7 +145,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         path: '/menu/menu1',
                         name: 'menu1',
                         meta: {
-                            icon: 'menu',
+                            icon: 'ep-Menu',
                             title: 'menu1',
                             roles: ['admin', 'common']
                         },
@@ -114,7 +156,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         name: 'menu2',
                         meta: {
                             title: 'menu2',
-                            icon: 'menu',
+                            icon: 'ep-Menu',
                             roles: ['admin', 'common']
                         },
                         redirect: '/menu/menu2/menu22',
@@ -123,7 +165,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                                 path: '/menu/menu2/menu22',
                                 name: 'menu22',
                                 meta: {
-                                    icon: 'menu',
+                                    icon: 'ep-Menu',
                                     title: 'menu22',
                                     roles: ['admin', 'common']
                                 },
@@ -133,7 +175,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                                 path: '/menu/menu2/menu23',
                                 name: 'menu23',
                                 meta: {
-                                    icon: 'menu',
+                                    icon: 'ep-Menu',
                                     title: 'menu23',
                                     roles: ['admin', 'common']
                                 },

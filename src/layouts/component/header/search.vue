@@ -12,9 +12,7 @@
                     </template>
                     <template #default="{ item }">
                         <div>
-                            <el-icon>
-                                <component :is="getOneEpIcon(item.meta?.icon)"></component>
-                            </el-icon>
+                            <Icon :name="item.meta?.icon" class="mr5" />
                             {{ item.meta?.title }}
                         </div>
                     </template>
@@ -27,7 +25,6 @@
 <script setup lang="ts">
 import { store } from '@/stores';
 import { useTagsRoutesStore } from '@/stores/tagsRoutes';
-import { getOneEpIcon } from '@/utils/icon';
 import { nextTick, reactive, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter, type RouteRecordRaw } from 'vue-router';
@@ -65,7 +62,7 @@ const initTags = () => {
 
 
 const router = useRouter()
-const handleSelect = (item: RouteRecordRaw) => {
+const handleSelect = (item: Record<string, any>) => {
     router.push(item.path)
     closeSearch()
 
