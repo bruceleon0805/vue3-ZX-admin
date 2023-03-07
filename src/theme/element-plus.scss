@@ -1,4 +1,3 @@
-
 // 修改element-plus 主题样式
 
 $--colors: (
@@ -29,9 +28,10 @@ $--colors: (
   $namespace: "ep"
 ); */
 
-@forward 'element-plus/theme-chalk/src/common/var.scss' with ( 
-  $colors: $--colors
-);
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: $--colors,
+  $menu: ('hover-bg-color':var(--el-bg-color))
+  );
 
 
-  @use './element-plus-dark.scss'
+@use './element-plus-dark.scss'

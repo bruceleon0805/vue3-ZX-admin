@@ -8,10 +8,11 @@ import { componentSize, type ThemeParams } from './theme.d'
 export const useThemeStore = defineStore('themeStore', {
     persist: {
         /* 需要持久化的项目 */
-        paths: ['isCollapse', 'componentSize']
+        paths: ['isCollapse', 'componentSize', 'primary']
     },
     state: (): ThemeParams => {
         return {
+            primary: '#409eff', // 主题颜色
             // 是否折叠菜单
             isCollapse: false,
             // 路由切换动画 可选 slide-right|slide-left|opacity|move|fade

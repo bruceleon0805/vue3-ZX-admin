@@ -8,8 +8,7 @@
                         primary
                     </div>
                     <div class="global-theme-value">
-                        <el-color-picker v-model="state.primary" size="default"
-                            @change="colorPickerChange"></el-color-picker>
+                        <el-color-picker v-model="primary" size="default" @change="colorPickerChange"></el-color-picker>
                     </div>
                 </div>
 
@@ -28,19 +27,27 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus';
 import { reactive } from 'vue';
 
+import { store } from '@/stores';
+import { useThemeStore } from '@/stores/theme';
+
+/* 
+切换dark mode
+*/
 import { useDark, useToggle } from '@vueuse/core'
+import { storeToRefs } from 'pinia';
+
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-
+/* 主题 */
+const themeStore = useThemeStore(store)
+const { primary } = storeToRefs(themeStore)
 
 
 
 const state = reactive({
-    open: false,
-    primary: '#409EFF'
+    open: false
 })
 
 const openDrawer = () => {
@@ -54,24 +61,14 @@ const drawerClose = () => {
 primary 颜色选择
 */
 const colorPickerChange = () => {
-    if (!state.primary) return ElMessage.warning('主题颜色 primary 不能为空')
-    // 颜色加深
-    //document.documentElement.style.setProperty('--el-color-primary-dark-2',`${}`)
-
-    document.documentElement.style.setProperty('--el-color-primary', state.primary)
-
-    // --el-color-primary-light- 仍需按程度调整
-
+    console.log(primary.value);
+    if (!primary.value) return ElMessage.warning('主题颜色 primary 不能为空')
+    document.documentElement.style.setProperty('--el-color-primary', primary.value)
 }
-
-
-
 
 const darkChange = () => {
     toggleDark(isDark.value)
 }
-
-
 
 defineExpose({
     openDrawer
@@ -85,19 +82,23 @@ defineExpose({
 .drawer-scrollbar {
     height: calc(100vh - 50px);
     padding: 0 15px;
-    :deep(.el-scrollbar__view){
+
+    :deep(.el-scrollbar__view) {
         overflow-x: hidden;
     }
-    .global-theme{
+
+    .global-theme {
         display: flex;
         align-items: center;
         margin-bottom: 5px;
-        &-label{
-           flex: 1; 
-           color: var(--el-text-color-primary);
+
+        &-label {
+            flex: 1;
+            color: var(--el-text-color-primary);
         }
     }
-    .dark-mode{
+
+    .dark-mode {
         display: flex;
         align-items: center;
         justify-content: space-between;

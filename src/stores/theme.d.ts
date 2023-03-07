@@ -14,6 +14,7 @@ export enum componentSize {
 
 
 export interface ThemeParams {
+    primary: string,
     isCollapse: boolean,
     transitionName: string,
     componentSize: componentSize
