@@ -1,5 +1,5 @@
 <template>
-    <el-menu text-color="#1890ff">
+    <el-menu text-color="#1890ff" style="max-height: 60px;">
         <el-menu-item>
             <iconfont name="sofa" :size="28" style="margin-right: 10px;" />
             <template #title v-if="!isCollapse">

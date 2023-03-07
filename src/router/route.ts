@@ -88,7 +88,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         path: '/system/user',
                         name: 'SystemUser',
                         meta: {
-                            title: '角色管理',
+                            title: '用户管理',
                             icon: 'ep-Menu',
                             roles: ['admin','common']
                         },

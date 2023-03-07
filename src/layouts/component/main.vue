@@ -18,7 +18,6 @@
 <script setup lang="ts">
 import { useKeepAliveStore } from '@/stores/keepAlive';
 import { useThemeStore } from '@/stores/theme';
-import { storeToRefs } from 'pinia';
 import { computed, defineAsyncComponent, provide, ref } from 'vue';
 
 const Tags = defineAsyncComponent(() => import('@/layouts/tags/tags.vue'))

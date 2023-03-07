@@ -1,8 +1,8 @@
 
 <template>
-    <el-aside :width="asideWidth">
+    <el-aside :width="asideWidth" class="layout-aside">
         <Logo />
-        <el-menu active-text-color="#1890ff" :router="true" :collapse="isCollapse" :collapse-transition="false">
+        <el-menu style="height: fit-content;" active-text-color="#1890ff" :router="true" :collapse="isCollapse" :collapse-transition="false">
             <template v-for="item in menuRoutes">
                 <el-sub-menu :key="item.path" :index="item.path" v-if="item.children && item.children.length">
                     <template #title>
@@ -48,6 +48,12 @@ const Logo = defineAsyncComponent(() => import('@/layouts/logo/logo.vue'))
 </script>
 
 <style lang="scss">
+.layout-aside{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-x: hidden;
+}
 /**
  el-sub-menu 下提示 父 子级联动
  */
