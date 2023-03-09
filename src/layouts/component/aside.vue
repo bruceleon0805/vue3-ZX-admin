@@ -2,11 +2,12 @@
 <template>
     <el-aside :width="asideWidth" class="layout-aside">
         <Logo />
-        <el-menu style="height: fit-content;" active-text-color="#1890ff" :router="true" :collapse="isCollapse" :collapse-transition="false">
+        <el-menu :unique-opened="true" :default-active="defaultActive" style="height: fit-content;" active-text-color="#1890ff" :router="true"
+            :collapse="isCollapse" :collapse-transition="false">
             <template v-for="item in menuRoutes">
                 <el-sub-menu :key="item.path" :index="item.path" v-if="item.children && item.children.length">
                     <template #title>
-                        <Icon :name="item.meta?.icon"/>
+                        <Icon :name="item.meta?.icon" />
                         <span>{{ item.meta?.title }}</span>
                     </template>
                     <!-- 子菜单 -->
@@ -30,6 +31,12 @@ import { useMenuRoutesStore } from '@/stores/menuRoutes';
 import { useThemeStore } from '@/stores/theme';
 import { storeToRefs } from 'pinia';
 import { computed, defineAsyncComponent } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+
+const defaultActive = computed(() => route.path)
+
 
 
 const themeStore = useThemeStore()
@@ -48,12 +55,13 @@ const Logo = defineAsyncComponent(() => import('@/layouts/logo/logo.vue'))
 </script>
 
 <style lang="scss">
-.layout-aside{
+.layout-aside {
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow-x: hidden;
 }
+
 /**
  el-sub-menu 下提示 父 子级联动
  */

@@ -35,7 +35,8 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <el-pagination @size-change="sizeChange" @current-change="currentChange" :page-count="5" :page-sizes="[10, 20, 30]" v-model:current-page="state.params.pagenum" background
+            <el-pagination @size-change="sizeChange" @current-change="currentChange" :page-count="5"
+                :page-sizes="[10, 20, 30]" v-model:current-page="state.params.pagenum" background
                 v-model:page-size="state.params.pagesize" layout="total,sizes,prev,pager,next,jumper" :total="state.total">
             </el-pagination>
         </el-card>
@@ -56,34 +57,34 @@ const state = reactive({
         pagesize: 10
     }
 })
-const getData=()=>{
-    state.loading=true
-    const data=[]
-    for(let i=0;i<20;i++){
+const getData = () => {
+    state.loading = true
+    const data = []
+    for (let i = 0; i < 20; i++) {
         data.push({
-            roleName:i===0?'超级管理员':'普通用户',
-            roleSign:i===0?'admin':'common',
-            describe:`测试角色${i+1}`,
-            sort:i,
-            status:true,
-            createTime:new Date().toLocaleString()
+            roleName: i === 0 ? '超级管理员' : '普通用户',
+            roleSign: i === 0 ? 'admin' : 'common',
+            describe: `测试角色${i + 1}`,
+            sort: i,
+            status: true,
+            createTime: new Date().toLocaleString()
         })
 
     }
     state.data = data as any
-    state.total= data.length
+    state.total = data.length
     setTimeout(() => {
-        state.loading=false
+        state.loading = false
     }, 500);
 
 }
 
-const sizeChange=(val:number)=>{
-    state.params.pagesize=val
+const sizeChange = (val: number) => {
+    state.params.pagesize = val
     getData()
 }
-const currentChange=(val:number)=>{
-    state.params.pagenum=val
+const currentChange = (val: number) => {
+    state.params.pagenum = val
     getData()
 }
 
