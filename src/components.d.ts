@@ -9,7 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Auth: typeof import('./components/auth/auth.vue')['default']
+    AuthAll: typeof import('./components/auth/authAll.vue')['default']
+    Auths: typeof import('./components/auth/auths.vue')['default']
     copy: typeof import('./components/iconfont/iconfont copy.vue')['default']
+    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']

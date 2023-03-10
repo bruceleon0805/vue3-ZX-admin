@@ -38,7 +38,7 @@
         </div>
 
         <div class="user-icon" @click="layoutSetting">
-            <Icon name="icon-color" title="布局配置"/>
+            <Icon name="icon-color" title="布局配置" />
         </div>
 
         <div class="user-icon">
@@ -60,7 +60,7 @@
         <el-dropdown @command="dropdownClick">
             <span class="user-link">
                 <img :src="userInfo.avatar" alt="头像" class="user-link-photo mr5">
-                admin
+                {{ userInfo.userName }}
                 <el-icon class="el-icon--right">
                     <i-ep-arrow-down></i-ep-arrow-down>
                 </el-icon>
@@ -79,7 +79,7 @@
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
-        
+
         <Search ref="searchRef" />
     </div>
 </template>
