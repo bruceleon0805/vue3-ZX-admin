@@ -94,6 +94,17 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                         },
                         component: () => import('@/views/system/user/user.vue')
                     }
+                    ,
+                    {
+                        path: '/system/department',
+                        name: 'SystemDepartment',
+                        meta: {
+                            title: '部门管理',
+                            icon: 'ep-Menu',
+                            roles: ['admin','common']
+                        },
+                        component: () => import('@/views/system/department/department.vue')
+                    }
                 ]
             },
             {
@@ -110,24 +121,34 @@ export const dynamicRoutes: RouteRecordRaw[] = [
             },
             {
 
-                path: '/system',
-                name: 'system',
+                path: '/permission',
+                name: 'permission',
                 meta: {
-                    title: 'System',
+                    title: '权限控制',
                     icon: 'ep-Setting',
                     roles: ['admin', 'common']
                 },
-                redirect: '/system/menu',
+                redirect: '/permission/page',
                 children: [
                     {
-                        path: '/system/menu',
-                        name: 'systemMenu',
+                        path: '/permission/page',
+                        name: 'permissionPage',
                         meta: {
-                            title: 'System',
+                            title: '页面控制',
                             icon: 'ep-Setting',
                             roles: ['admin', 'common']
                         },
-                        component: () => import('@/views/system/menu/menu.vue'),
+                        component: () => import('@/views/permission/page/page.vue'),
+                    },
+                    {
+                        path: '/permission/button',
+                        name: 'permissionButton',
+                        meta: {
+                            title: '按钮控制',
+                            icon: 'ep-Setting',
+                            roles: ['admin', 'common']
+                        },
+                        component: () => import('@/views/permission/button/button.vue'),
                     }
                 ]
             },

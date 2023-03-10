@@ -38,9 +38,7 @@
         </div>
 
         <div class="user-icon" @click="layoutSetting">
-            <el-icon title="布局配置">
-                <Iconfont name="color" />
-            </el-icon>
+            <Icon name="icon-color" title="布局配置"/>
         </div>
 
         <div class="user-icon">

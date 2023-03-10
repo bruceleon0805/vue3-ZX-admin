@@ -35,27 +35,26 @@
                 </el-form>
             </div>
 
-            <el-table :data="table.data" v-loading="table.loading">
-                <el-table-column label="序号" type="index"></el-table-column>
-                <el-table-column label="账户名称" prop="userName" show-overflow-tooltip></el-table-column>
-                <el-table-column label="用户昵称" prop="userNickname"></el-table-column>
-                <el-table-column label="关联角色" prop="roleSign"></el-table-column>
-                <el-table-column label="部门" prop="department" show-overflow-tooltip></el-table-column>
-                <el-table-column label="手机号" prop="phone" show-overflow-tooltip></el-table-column>
-                <el-table-column label="邮箱" prop="email" show-overflow-tooltip></el-table-column>
-                <el-table-column label="用户状态" prop="status" show-overflow-tooltip>
+            <el-table row-key="id" :data="table.data" v-loading="table.loading"
+                :tree-props="{ children: 'children', hasChildren: 'hasChildren' }">
+                <el-table-column label="部门名称" prop="deptName" show-overflow-tooltip></el-table-column>
+                <el-table-column label="排序">
+                    <template #default="scope">
+                        {{ scope.$index }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="部门状态">
                     <template #default="scope">
                         <el-tag :type="scope.row.status ? 'success' : 'info'">{{ scope.row.status ? '启用' : '禁用' }}</el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="用户描述" prop="describe" show-overflow-tooltip></el-table-column>
+                <el-table-column label="部门描述" prop="describe" show-overflow-tooltip></el-table-column>
                 <el-table-column label="创建时间" prop="createTime" show-overflow-tooltip></el-table-column>
-                <el-table-column label="操作" width="130">
+                <el-table-column label="操作" width="200">
                     <template #default="scope">
-                        <el-button type="primary" :disabled="scope.row.userName === 'admin'" size="small"
-                            text>修改</el-button>
-                        <el-button type="warning" :disabled="scope.row.userName === 'admin'" size="small"
-                            text>删除</el-button>
+                        <el-button type="primary"  size="small" text>新增</el-button>
+                        <el-button type="primary"  size="small" text>修改</el-button>
+                        <el-button type="warning"  size="small" text>删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -123,28 +122,36 @@ const table = reactive({
 const getTableData = () => {
     table.loading = true
     const data = []
-    for (let index = 0; index < 2; index++) {
-        data.push({
-            userName: index === 0 ? 'admin' : 'test',
-            userNickname: index === 0 ? '我是管理员' : '我是普通用户',
-            roleSign: index === 0 ? 'admin' : 'common',
-            department: index === 0 ? ['vueNextAdmin', 'IT外包服务'] : ['vueNextAdmin', '资本控股'],
-            phone: '12345678910',
-            email: 'vueNextAdmin@123.com',
-            sex: '女',
-            password: '123456',
-            overdueTime: new Date(),
-            status: true,
-            describe: index === 0 ? '不可删除' : '测试用户',
-            createTime: new Date().toLocaleString(),
-        })
-
-    }
+    data.push({
+        deptName: 'vueNextAdmin',
+        createTime: new Date().toLocaleString(),
+        status: true,
+        sort: Math.random(),
+        describe: '顶级部门',
+        id: Math.random(),
+        children: [
+            {
+                deptName: 'IT外包服务',
+                createTime: new Date().toLocaleString(),
+                status: true,
+                sort: Math.random(),
+                describe: '总部',
+                id: Math.random(),
+            },
+            {
+                deptName: '资本控股',
+                createTime: new Date().toLocaleString(),
+                status: true,
+                sort: Math.random(),
+                describe: '分部',
+                id: Math.random(),
+            },
+        ],
+    })
     table.data = data as any
     table.total = data.length
     setTimeout(() => {
         table.loading = false
-
     }, 500);
 }
 

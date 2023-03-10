@@ -27,8 +27,6 @@ const keepAliveStore = useKeepAliveStore()
 const themeStore = useThemeStore()
 const transitionName = computed(() => themeStore.transitionName)
 
-
-
 // 刷新当前页面
 const isRouterShow = ref(true)
 const refreshCurrentPage = (isRefresh: boolean) => {
