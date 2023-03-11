@@ -1,12 +1,9 @@
 <template>
     <el-footer>
-        Footer
-        <i-ep-arrow-right />
-        <i-mdi-account />
-        
-        <el-icon>
-            <component :is="icon"></component>
-        </el-icon>
+       <div class="footer">
+            <div>xxxxxxx</div>
+            <div>xxxxxxxxxxx</div>
+       </div>
     
     </el-footer>
 </template>
@@ -16,6 +13,14 @@ const icon = 'i-ep-search'
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //background-color: var(--el-text-color-secondary);
+}
 
 </style>

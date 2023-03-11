@@ -21,9 +21,13 @@ import 'element-plus/dist/index.css'
 import { setupStore } from './stores'
 import { setupI18n } from './i18n'
 import { setupIcon } from './plugins/icon'
+import { directive } from './directive'
 
 const appInit = async () => {
     const app = createApp(App)
+    // 注册指令
+    directive(app)
+    
     await setupI18n(app)
     // pinia
     setupStore(app)

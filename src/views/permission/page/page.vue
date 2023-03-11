@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-content">
+    <div class="">
         <el-alert type="warning" title="提示：切换权限演示" :closable="false"></el-alert>
         <el-alert type="success" :title="`当前页面权限：[${userInfo.roles}],当前用户按钮权限：[${userInfo.btnActionList}]`"
             :closable="false"></el-alert>
@@ -8,9 +8,7 @@
                 <el-radio-button label="admin"></el-radio-button>
                 <el-radio-button label="common"></el-radio-button>
             </el-radio-group>
-
         </el-card>
-
     </div>
 </template>
 

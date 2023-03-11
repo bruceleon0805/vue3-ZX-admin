@@ -157,7 +157,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'menu',
                 redirect: '/menu/menu1',
                 meta: {
-                    title: 'menu',
+                    title: '菜单嵌套',
                     icon: 'ep-Menu',
                     permissions: ['admin', 'common']
                 },
