@@ -46,8 +46,8 @@ export const useUserInfoStore = defineStore('userInfoStore', {
                         userName: userName,
                         avatar:
                             userName === 'admin'
-                                ? 'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
-                                : 'https://img2.baidu.com/it/u=2370931438,70387529&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+                                ? 'https://upload-bbs.mihoyo.com/upload/2021/07/05/181022726/a23d0da75d32f10428ffa0e8cc53932e_7261091149645338367.jpg'
+                                : 'https://upload-bbs.mihoyo.com/upload/2021/06/06/2453171/f5893e1aec7f1ca080a6110e608f35f4_6500189115909432998.jpg',
                         time: new Date().getTime(),
                         roles: roles,
                         btnActionList: btnActionList
